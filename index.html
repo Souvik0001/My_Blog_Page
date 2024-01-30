@@ -1,0 +1,741 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lucifer Blogs</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400..700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            height: 100%;
+            width: 100%;
+        }
+
+        a {
+            text-decoration: none;
+        }
+
+        .container {
+            /* max-width: 66vw;
+            padding: 2rem 1rem;
+            margin: 0 auto; */
+            /* background-color: aqua; */
+        }
+
+        .header_container {
+            margin: 0;
+            padding: 0;
+            height: 14vh;
+            width: 100vw;
+            margin-bottom: 0.8rem;
+            background-color: rgb(124, 32, 32);
+        }
+
+        .header_title {
+            margin-bottom: 1rem;
+            font-size: 2rem;
+            line-height: 2rem;
+            padding-left: 40vw;
+            font-family: "Dancing Script", cursive;
+            font-weight: 700;
+            text-align: center;
+            color: azure;
+        }
+
+        .logo {
+            height: 5vh;
+            width: 5vh;
+            padding-top: 0.5vh;
+            margin-left: 2vh;
+            border-radius: 15px;
+        }
+
+        .header_desc {
+            max-width: 568px;
+            text-align: center;
+            color: rgb(224, 204, 204);
+            font-family: "Dancing Script", cursive;
+            padding-top: 2vh;
+            margin: 0 auto;
+        }
+
+        nav {
+            display: flex;
+            justify-content: center;
+            margin: 0;
+            background-color: #2c3e50;
+            padding: 0.6rem;
+        }
+
+        nav a {
+            color: #fff;
+            text-decoration: none;
+            margin: 0 3rem;
+        }
+
+        section {
+            padding: 2rem;
+        }
+
+        .featured-post {
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .background {
+            background-color: rgb(134, 35, 35);
+            color: rgb(253, 252, 251);
+            text-align: center;
+        }
+
+        .call-to-action {
+            display: inline-block;
+            background-color: #3498db;
+            color: #fff;
+            padding: 0.5rem 1rem;
+            text-decoration: none;
+            border-radius: 4px;
+        }
+
+        .main_container {
+            max-width: 66vw;
+            padding: 2rem 1rem;
+            margin: 0 auto;
+            display: grid;
+            gap: 1.5rem;
+            /* grid-template-columns: repeat(1, 1fr); */
+            grid-template-columns: repeat(auto-fit, minmax(350px, 400px));
+            justify-content: center;
+        }
+
+        @media (min-width:935px) {
+            .main_container {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (min-width:1380px) {
+            .main_container {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+
+        @media (min-width:1870px) {
+            .main_container {
+                grid-template-columns: repeat(4, 1fr);
+            }
+        }
+
+        .card_container {
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            border: 1px solid rgb(233, 224, 224);
+            border-radius: 8px;
+        }
+
+        .card_image_container {
+            position: relative;
+            overflow: hidden;
+            height: 7rem;
+        }
+
+        @media (min-width: 768px) {
+            .card_image_container {
+                height: 12rem;
+            }
+        }
+
+        .card_image {
+            object-fit: cover;
+            object-position: center;
+            position: absolute;
+            height: 100%;
+            width: 100%;
+        }
+
+        .card_title_container {
+            display: flex;
+            flex-direction: column;
+            padding: 1.5rem;
+        }
+
+        .card_container:hover .card_image {
+            transform: scale(1.1);
+            transition-duration: 200ms;
+        }
+
+        .card_title {
+            font-size: 1rem;
+            font-weight: 600;
+            line-height: 1.5rem;
+            margin-bottom: 0.3rem;
+            color: rgb(25, 23, 23);
+        }
+
+
+        .card_title_anchor:hover .card_title {
+            color: rgb(67, 67, 191);
+        }
+
+
+        .card_desc {
+            color: rgb(113, 107, 107);
+            font-size: 1rem;
+        }
+
+        .card_footer_container {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+            padding: 0 1.5rem;
+            padding-bottom: 1.5rem;
+        }
+
+        .author_container {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .author_avatar_container {
+            height: 2.5rem;
+            width: 2.5rem;
+            overflow: hidden;
+            border: 1px solid rgb(150, 147, 147);
+            border-radius: 50%;
+            background-color: rgb(243, 239, 239);
+        }
+
+        .author_info_container {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .author_name {
+            color: rgb(38, 38, 149);
+        }
+
+        .author_date {
+            color: rgb(136, 126, 126);
+        }
+
+        .card_tag_container {
+            font-size: 0.79rem;
+            border: 1px solid rgb(76, 71, 71);
+            border-radius: 4px;
+            line-height: 1.3rem;
+            padding: 0.25rem 0.5rem;
+            color: grey;
+        }
+
+        .content-section {
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .call-to-action {
+            display: inline-block;
+            background-color: #3498db;
+            color: #fff;
+            padding: 0.5rem 1rem;
+            text-decoration: none;
+            border-radius: 4px;
+        }
+
+        .tech {
+            float: right;
+            border-radius: 20px;
+            margin: 2vh;
+        }
+
+        .about_me {
+            background-color: brown;
+            font-family: "Dancing Script", cursive;
+            padding: 1.5vh;
+            color: rgb(254, 251, 251);
+        }
+
+        /* footer {
+            text-align: center;
+            padding: 1rem;
+            background-color: #2c3e50;
+            color: #fff;
+        } */
+
+        footer {
+            background: #222;
+            color: #d3d4d6;
+            height: 10vh;
+            text-align: center;
+            padding: 5vh;
+        }
+
+        .socials {
+            list-style-type: none;
+            padding: 0;
+            /* text-align: center; */
+            /* background-color: #2c3e50; */
+        }
+
+        .socials li {
+            /* display: inline-block; */
+            margin-left: 10px;
+        }
+
+        .socials img {
+            width: 32px;
+            margin-left: 3vw;
+        }
+
+        .socials img:hover {
+            opacity: 0.5;
+        }
+
+        /* @media screen and (min-width: 860px) {
+            footer {
+                display: flex;
+                justify-content: space-between;
+                padding: 0 20px;
+            }
+        }
+
+        @media screen and (max-width: 859px) {
+            footer {
+                text-align: center;
+                padding: 10px;
+            }
+        } */
+
+        .font {
+            font-family: "Dancing Script", cursive;
+        }
+
+        .list {
+            margin-left: 3vw;
+            margin-top: 2vw;
+        }
+
+        .paragraph {
+            margin-top: 2vh;
+        }
+
+        .margin {
+            margin-top: 2vh;
+        }
+    </style>
+</head>
+
+<body class="body_container">
+
+    <div class="container">
+
+        <header class="header_container">
+            <span class="header_title"> Lucifer Blogs</span>
+            <img src="image2.png" alt="Annonymous Logo" class="logo">
+            <p class="header_desc">
+                - Insights & Imagination: Exploring the World Through My Lens
+            </p>
+        </header>
+
+        <nav class="font">
+            <a href="#about">About Me</a>
+            <a href="#portfolio">Portfolio</a>
+            <a href="#contact">Contact</a>
+        </nav>
+
+        <section id="featured-post" class="featured-post">
+            <h2 class="font background">Featured Post</h2>
+
+            <div class="card_container">
+                <a href="https://www.amazon.in/gp/aw/d/B0CKJ5ZXFK/?_encoding=UTF8&pd_rd_plhdr=t&aaxitk=ba07619d5efcc22773d2438719ccfd74&hsa_cr_id=0&qid=1706650161&sr=1-1-e0fa1fdd-d857-4087-adda-5bd576b25987&ref_=sbx_be_s_sparkle_mcd_asin_0_title&pd_rd_w=gXlh2&content-id=amzn1.sym.df9fe057-524b-4172-ac34-9a1b3c4e647d%3Aamzn1.sym.df9fe057-524b-4172-ac34-9a1b3c4e647d&pf_rd_p=df9fe057-524b-4172-ac34-9a1b3c4e647d&pf_rd_r=B338JMVHQ209HHA0VXDN&pd_rd_wg=PCjur&pd_rd_r=4ab5fb82-8d4f-452e-ba59-2c28ec372be4&th=1"
+                    class="card_image_container">
+                    <img src="POCO.png" alt="POCO Smartphones" class="card_image" loading="lazy" />
+                </a>
+
+                <div class="card_title_container">
+                    <a href="https://www.amazon.in/gp/aw/d/B0CKJ5ZXFK/?_encoding=UTF8&pd_rd_plhdr=t&aaxitk=ba07619d5efcc22773d2438719ccfd74&hsa_cr_id=0&qid=1706650161&sr=1-1-e0fa1fdd-d857-4087-adda-5bd576b25987&ref_=sbx_be_s_sparkle_mcd_asin_0_title&pd_rd_w=gXlh2&content-id=amzn1.sym.df9fe057-524b-4172-ac34-9a1b3c4e647d%3Aamzn1.sym.df9fe057-524b-4172-ac34-9a1b3c4e647d&pf_rd_p=df9fe057-524b-4172-ac34-9a1b3c4e647d&pf_rd_r=B338JMVHQ209HHA0VXDN&pd_rd_wg=PCjur&pd_rd_r=4ab5fb82-8d4f-452e-ba59-2c28ec372be4&th=1"
+                        class="card_title_anchor">
+                        <h2 class="card_title">New Smartphones Released</h2>
+                    </a>
+                    <p class="card_desc">
+                        POCO C51 (Royal Blue, 6GB RAM, 128GB Storage). Processor: Powerful MediaTek G36 octa-core CPU ;
+                        clocked at up to 2.2 GHz | 11GB of RAM including 5GB virtual | Android 13 Go Edition| 6.52"
+                        large HD+ Scratch Resistant Display | 8MP AI Dual camera |Rear fingerprint | 5000mAh Battery
+                        6.52" large HD+ Scratch Resistant Display, 400nits in High Brightness mode, 120 Hz touch
+                        sampling rate
+                        8MP AI dual camera with Primary sensor of f/2.0 with the following modes: HDR Mode, Photo Mode,
+                        Video Mode, Portrait Mode, Short Video, Timelapse, Tilt Shift Mode
+                    </p>
+                </div>
+
+                <div class="card_footer_container">
+
+                    <div class="author_container">
+                        <div class="author_avatar_container">
+                            <img src="https://api.dicebear.com/7.x/notionists/svg?seed=John?size=64" loading="lazy"
+                                class="author_avatar" alt="avatar 1" />
+                        </div>
+                        <div class="author_info_container">
+                            <span class="author_name">
+                                Souvik Chowdhury
+                            </span>
+                            <span class="author_date">
+                                Jan 22, 2024
+                            </span>
+                        </div>
+                    </div>
+
+                    <div>
+                        <span class="card_tag_container"><a
+                                href="https://www.amazon.in/gp/aw/d/B0CKJ5ZXFK/?_encoding=UTF8&pd_rd_plhdr=t&aaxitk=ba07619d5efcc22773d2438719ccfd74&hsa_cr_id=0&qid=1706650161&sr=1-1-e0fa1fdd-d857-4087-adda-5bd576b25987&ref_=sbx_be_s_sparkle_mcd_asin_0_title&pd_rd_w=gXlh2&content-id=amzn1.sym.df9fe057-524b-4172-ac34-9a1b3c4e647d%3Aamzn1.sym.df9fe057-524b-4172-ac34-9a1b3c4e647d&pf_rd_p=df9fe057-524b-4172-ac34-9a1b3c4e647d&pf_rd_r=B338JMVHQ209HHA0VXDN&pd_rd_wg=PCjur&pd_rd_r=4ab5fb82-8d4f-452e-ba59-2c28ec372be4&th=1">Discover</a></span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <main class="main_container">
+
+            <!-- card 1 start -->
+            <div class="card_container">
+                <a href="https://www.amazon.in/HP-i5-1235U-Anti-Glare-Graphics-15s-fq5202TU/dp/B0CJM5Z6FY/ref=zg_bsnr_g_1375424031_d_sccl_1/259-0517589-2352708?th=1"
+                    class="card_image_container">
+                    <img src="hp.png" alt="card 1 image" class="card_image" loading="lazy" />
+                </a>
+
+                <div class="card_title_container">
+                    <a href="https://www.amazon.in/HP-i5-1235U-Anti-Glare-Graphics-15s-fq5202TU/dp/B0CJM5Z6FY/ref=zg_bsnr_g_1375424031_d_sccl_1/259-0517589-2352708?th=1"
+                        class="card_title_anchor">
+                        <h2 class="card_title">New Laptop Released</h2>
+                    </a>
+                    <p class="card_desc">
+                        HP 15s 12th Gen Intel Core i5-1235U 15/6inch (39.6 cm) FHD Anti-Glare, 8GB RAM, 512GB SSD, Intel
+                        Iris Xe Graphics, Dual Speakers, Backlit Kb, (Win 11 Home, Natural Silver, 1.69kg),15s-fq5202TU
+                        .
+
+                    </p>
+                </div>
+
+                <div class="card_footer_container">
+
+                    <div class="author_container">
+                        <div class="author_avatar_container">
+                            <img src="https://api.dicebear.com/7.x/notionists/svg?seed=John?size=64" loading="lazy"
+                                class="author_avatar" alt="avatar 1" />
+                        </div>
+                        <div class="author_info_container">
+                            <span class="author_name">
+                                Souvik Chowdhury
+                            </span>
+                            <span class="author_date">
+                                Jan 19, 2024
+                            </span>
+                        </div>
+                    </div>
+
+                    <div>
+                        <span class="card_tag_container"><a
+                                href="https://www.amazon.in/HP-i5-1235U-Anti-Glare-Graphics-15s-fq5202TU/dp/B0CJM5Z6FY/ref=zg_bsnr_g_1375424031_d_sccl_1/259-0517589-2352708?th=1">Discover</a></span>
+                    </div>
+                </div>
+            </div>
+            <!-- card 1 ends here -->
+
+            <div class="card_container">
+                <a href="https://www.amazon.in/Fire-Boltt-Gladiator-Stainless-Bluetooth-Interactions/dp/B0CFFCMCK8/ref=sr_1_1_sspa?adgrpid=60417534673&ext_vrnc=hi&gclid=Cj0KCQiA2eKtBhDcARIsAEGTG43L2T58w77mvp6px2quQBD5yMppKjCNrC6UFmp0JULzmIvcKpKskVYaAlkNEALw_wcB&hvadid=590712263690&hvdev=c&hvlocphy=1007816&hvnetw=g&hvqmt=b&hvrand=6992981183274618117&hvtargid=kwd-55129728300&hydadcr=24564_2265423&keywords=top+5+smart+watches&qid=1706651826&sr=8-1-spons&sp_csd=d2lkZ2V0TmFtZT1zcF9hdGY&psc=1"
+                    class="card_image_container">
+                    <img src="Fire-boltt.png" alt="card 1 image" class="card_image" loading="lazy" />
+                </a>
+
+                <div class="card_title_container">
+                    <a href="https://www.amazon.in/Fire-Boltt-Gladiator-Stainless-Bluetooth-Interactions/dp/B0CFFCMCK8/ref=sr_1_1_sspa?adgrpid=60417534673&ext_vrnc=hi&gclid=Cj0KCQiA2eKtBhDcARIsAEGTG43L2T58w77mvp6px2quQBD5yMppKjCNrC6UFmp0JULzmIvcKpKskVYaAlkNEALw_wcB&hvadid=590712263690&hvdev=c&hvlocphy=1007816&hvnetw=g&hvqmt=b&hvrand=6992981183274618117&hvtargid=kwd-55129728300&hydadcr=24564_2265423&keywords=top+5+smart+watches&qid=1706651826&sr=8-1-spons&sp_csd=d2lkZ2V0TmFtZT1zcF9hdGY&psc=1"
+                        class="card_title_anchor">
+                        <h2 class="card_title">New Smartwatches Released</h2>
+                    </a>
+                    <p class="card_desc">
+                        Fire-Boltt Gladiator 1.96" Biggest Display Luxury Stainless Steel Smart Watch with Bluetooth
+                        Calling, Voice Assistant &123 Sports Modes, 8 Unique UI Interactions, 24/7 Heart Rate Tracking
+                        (Black)
+                    </p>
+                </div>
+
+                <div class="card_footer_container">
+
+                    <div class="author_container">
+                        <div class="author_avatar_container">
+                            <img src="https://api.dicebear.com/7.x/notionists/svg?seed=John?size=64" loading="lazy"
+                                class="author_avatar" alt="avatar 1" />
+                        </div>
+                        <div class="author_info_container">
+                            <span class="author_name">
+                                Souvik Chowdhury
+                            </span>
+                            <span class="author_date">
+                                Jan 14, 2024
+                            </span>
+                        </div>
+                    </div>
+
+                    <div>
+                        <span class="card_tag_container"><a
+                                href="https://www.amazon.in/Fire-Boltt-Gladiator-Stainless-Bluetooth-Interactions/dp/B0CFFCMCK8/ref=sr_1_1_sspa?adgrpid=60417534673&ext_vrnc=hi&gclid=Cj0KCQiA2eKtBhDcARIsAEGTG43L2T58w77mvp6px2quQBD5yMppKjCNrC6UFmp0JULzmIvcKpKskVYaAlkNEALw_wcB&hvadid=590712263690&hvdev=c&hvlocphy=1007816&hvnetw=g&hvqmt=b&hvrand=6992981183274618117&hvtargid=kwd-55129728300&hydadcr=24564_2265423&keywords=top+5+smart+watches&qid=1706651826&sr=8-1-spons&sp_csd=d2lkZ2V0TmFtZT1zcF9hdGY&psc=1">Discover</a></span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card_container">
+                <a href="https://www.mitnicksecurity.com/blog/common-hacking-techniques-2023"
+                    class="card_image_container">
+                    <img src="hacking.jpeg" alt="card 1 image" class="card_image" loading="lazy" />
+                </a>
+
+                <div class="card_title_container">
+                    <a href="https://www.mitnicksecurity.com/blog/common-hacking-techniques-2023"
+                        class="card_title_anchor">
+                        <h2 class="card_title">Social Engineering</h2>
+                    </a>
+                    <p class="card_desc">
+                        Social engineering is an attempt to get a potential victim — often someone who works for a
+                        targeted organization — to share personal information, usually by impersonating a trusted
+                        source.
+                    </p>
+                </div>
+
+                <div class="card_footer_container">
+
+                    <div class="author_container">
+                        <div class="author_avatar_container">
+                            <img src="https://api.dicebear.com/7.x/notionists/svg?seed=John?size=64" loading="lazy"
+                                class="author_avatar" alt="avatar 1" />
+                        </div>
+                        <div class="author_info_container">
+                            <span class="author_name">
+                                Souvik Chowdhury
+                            </span>
+                            <span class="author_date">
+                                Jan 11, 2024
+                            </span>
+                        </div>
+                    </div>
+
+                    <div>
+                        <span class="card_tag_container"><a
+                                href="https://www.mitnicksecurity.com/blog/common-hacking-techniques-2023">Discover</a></span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card_container">
+                <a href="https://moderndiplomacy.eu/2023/12/08/the-role-of-artificial-intelligence-in-modern-warfare-case-of-southern-asia/"
+                    class="card_image_container">
+                    <img src="war.jpeg" alt="card 1 image" class="card_image" loading="lazy" />
+                </a>
+
+                <div class="card_title_container">
+                    <a href="https://moderndiplomacy.eu/2023/12/08/the-role-of-artificial-intelligence-in-modern-warfare-case-of-southern-asia/"
+                        class="card_title_anchor">
+                        <h2 class="card_title">Future of War</h2>
+                    </a>
+                    <p class="card_desc">
+                        With the advancement in land warfare and geopolitical complexities, a significant transformation
+                        in the form of Artificial Intelligence has changed realm of modern strategies and tactics of
+                        warfare.
+                    </p>
+                </div>
+
+                <div class="card_footer_container">
+
+                    <div class="author_container">
+                        <div class="author_avatar_container">
+                            <img src="https://api.dicebear.com/7.x/notionists/svg?seed=John?size=64" loading="lazy"
+                                class="author_avatar" alt="avatar 1" />
+                        </div>
+                        <div class="author_info_container">
+                            <span class="author_name">
+                                Souvik Chowdhury
+                            </span>
+                            <span class="author_date">
+                                Dec 20, 2023
+                            </span>
+                        </div>
+                    </div>
+
+                    <div>
+                        <span class="card_tag_container"><a
+                                href="https://moderndiplomacy.eu/2023/12/08/the-role-of-artificial-intelligence-in-modern-warfare-case-of-southern-asia/">Discover</a></span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card_container">
+                <a href="https://en.wikipedia.org/wiki/Large_language_model" class="card_image_container">
+                    <img src="LLM.jpeg" alt="card 1 image"
+                        class="card_image" loading="lazy" />
+                </a>
+
+                <div class="card_title_container">
+                    <a href="https://en.wikipedia.org/wiki/Large_language_model" class="card_title_anchor">
+                        <h2 class="card_title">Large Language Models</h2>
+                    </a>
+                    <p class="card_desc">
+                        A large language model (LLM) is a language model notable for its ability to achieve general-purpose language generation. LLMs acquire these abilities by learning statistical relationships from text documents during a computationally intensive self-supervised and semi-supervised training process.
+                    </p>
+                </div>
+
+                <div class="card_footer_container">
+
+                    <div class="author_container">
+                        <div class="author_avatar_container">
+                            <img src="https://api.dicebear.com/7.x/notionists/svg?seed=John?size=64" loading="lazy"
+                                class="author_avatar" alt="avatar 1" />
+                        </div>
+                        <div class="author_info_container">
+                            <span class="author_name">
+                                Souvik Chowdhury
+                            </span>
+                            <span class="author_date">
+                                Dec 2, 2023
+                            </span>
+                        </div>
+                    </div>
+
+                    <div>
+                        <span class="card_tag_container"><a href="https://en.wikipedia.org/wiki/Large_language_model">Discover</a></span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card_container">
+                <a href="https://www.techtarget.com/whatis/definition/ChatGPT" class="card_image_container">
+                    <img src="chatgpt.jpeg"
+                        class="card_image" loading="lazy" />
+                </a>
+
+                <div class="card_title_container">
+                    <a href="https://www.techtarget.com/whatis/definition/ChatGPT" class="card_title_anchor">
+                        <h2 class="card_title">Chat GPT</h2>
+                    </a>
+                    <p class="card_desc">
+                        ChatGPT is an artificial intelligence (AI) chatbot that uses natural language processing to create humanlike conversational dialogue. The language model can respond to questions and compose various written content, including articles, social media posts, essays, code and emails.
+                    </p>
+                </div>
+
+                <div class="card_footer_container">
+
+                    <div class="author_container">
+                        <div class="author_avatar_container">
+                            <img src="https://api.dicebear.com/7.x/notionists/svg?seed=John?size=64" loading="lazy"
+                                class="author_avatar" alt="avatar 1" />
+                        </div>
+                        <div class="author_info_container">
+                            <span class="author_name">
+                                Souvik Chowdhury
+                            </span>
+                            <span class="author_date">
+                                Nov 20, 2023
+                            </span>
+                        </div>
+                    </div>
+
+                    <div>
+                        <span class="card_tag_container"><a href="https://www.techtarget.com/whatis/definition/ChatGPT">Discover</a></span>
+                    </div>
+                </div>
+            </div>
+
+
+        </main>
+
+    </div>
+
+    <section id="about" class="content-section">
+        <h2 class="about_me">About Me</h2>
+        <img src="technology2.jpeg" alt="Technology image" class="tech">
+        <p class="font margin">Hi I am Souvik Chowdhury. A 2nd Year CSE Undergrad at VIT Vellore . Since childhood I was
+            extremely inclined towards discovering new technologies . So , I started my blog page . Here you can find
+            latest technology trends . Please do follow this page for latest updates . Below mentioned is my journey
+            since childhood</p>
+        <ul class="list">
+            <li>
+                <h3 class="font">Vellore Institute of Technology , 2022 - 2026</h3>
+                <h4 class="font">CGPA - 9.1</h4>
+                <p class="font paragraph">Here I learned various technologies like HTML , CSS , Javascript , React JS ,
+                    Node JS , Tailwind CSS , MongoDB. Which helped me mould myself as a Full Stack Developer. Also here
+                    I learned various concepts of programming like DSA, TOC, COA and so on.</p>
+            </li>
+            <li>
+                <h3 class="font margin">Saidabad Manindra Chandra Vidhyapith , 2019 - 2021</h3>
+                <h4 class="font">WBCHSE - 90.2%</h4>
+            </li>
+            <li>
+                <h3 class="font margin">Mary Immaculate School , 2006 - 2019</h3>
+                <h4 class="font">ICSE - 95.4%</h4>
+                <p class="font">This is the place where I was initially groomed , my Alma mater. Here I took part in
+                    various group and solo activities . I was an active member of Dance Club , Drama Club , Music Club ,
+                    Art Club . Apart from that I was also the inter-school team Goalkeeper.</p>
+            </li>
+
+        </ul>
+    </section>
+
+    <section id="contact" class="content-section">
+        <h2 class="about_me">Contact</h2>
+
+        <!-- <a href="mailto:your@email.com" class="call-to-action">Email Me</a>
+        <a href="https://twitter.com/yourhandle" class="call-to-action">Twitter</a> -->
+        <ol class="socials">
+
+            <li>
+                <span class="font">To visit my Instagram Account Click on the Icon Provided</span>
+                <a href="https://www.instagram.com/souvik_chowdhury_01?utm_source=qr&igsh=ZjRzbnNjeGkyNzds"
+                    target="_blank"><img src="icon-logo-instagram.png" alt="My Instagram"></a>
+            </li>
+            <li>
+                <span class="font">To visit my Linkedin Account Click on the Icon Provided</span>
+                <a href="https://www.linkedin.com/in/souvik-chowdhury-200bb425b?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app"
+                    target="_blank"><img src="icon-logo-linkedin.png" alt="My LinkedIn profile"></a>
+            </li>
+        </ol>
+    </section>
+
+    <!-- <footer>
+        &copy; 2024 Lucifer Blogs. All rights reserved.
+    </footer> -->
+
+    <footer>
+        <p>© 2024 by Lucifer Blogs | <a href="souvikchowdhury095@gmail.com">souvikchowdhury095@gmail.com</a></p>
+
+        <!-- <ul class="socials">
+            
+            <li>
+                <a href="https://www.instagram.com/souvik_chowdhury_01?utm_source=qr&igsh=ZjRzbnNjeGkyNzds" target="_blank"><img
+                        src="icon-logo-instagram.png" alt="My Instagram"></a>
+            </li>
+            <li>
+                <a href="https://www.linkedin.com/in/souvik-chowdhury-200bb425b?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app" target="_blank"><img
+                        src="icon-logo-linkedin.png" alt="My LinkedIn profile"></a>
+            </li>
+    
+        </ul> -->
+    </footer>
+
+</body>
+
+</html>
